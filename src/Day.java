@@ -56,8 +56,7 @@ public class Day implements Serializable{
 		public String getStart(){
 			return starttid;
 		}
-
-
+		
 }
 
 
