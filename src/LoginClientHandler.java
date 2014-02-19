@@ -8,13 +8,13 @@ import java.net.Socket;
 public class LoginClientHandler extends Thread {
 	
 	private Socket	clientSocket;
-	private Server	server;
+	private ServerCmd	server;
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
 	
-	public LoginClientHandler(Server server,Socket clientSocket) {
-		this.server = server;
+	public LoginClientHandler(Socket clientSocket) {
 		this.clientSocket = clientSocket;
+		server = new ServerCmd(new FileManager());
 		start();
 	}
 	
@@ -30,7 +30,7 @@ public class LoginClientHandler extends Thread {
 		{
 			e.printStackTrace();
 		}
-		handleRequests();
+			handleRequests();
 	}
 
 	private void handleRequests() {
@@ -57,9 +57,12 @@ public class LoginClientHandler extends Thread {
 			if(request[0].equals("login"))
 				try {
 					out.writeObject((User)server.checkLogin(request[1],request[2]));
+					Thread.currentThread().interrupt();
 				} catch(IOException e){
 					e.printStackTrace();
 				}
+			//if(request[0].equals("logout"))
+				
 			else
 				try{
 					System.out.println("Illegal request");

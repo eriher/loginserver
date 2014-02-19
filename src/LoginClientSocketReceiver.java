@@ -5,12 +5,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class LoginClientSocketReceiver extends Thread{
-	private Server server;
 	private ServerSocket serverSocket;
 	
-	public LoginClientSocketReceiver(Server server, ServerSocket serverSocket)
+	public LoginClientSocketReceiver(ServerSocket serverSocket)
 	{
-		this.server = server;
 		this.serverSocket = serverSocket;
 		start();
 	}
@@ -22,7 +20,7 @@ public class LoginClientSocketReceiver extends Thread{
 			try
 			{
 				Socket clientSocket = serverSocket.accept();
-				createLoginClientHandler(server,clientSocket);
+				createLoginClientHandler(clientSocket);
 			} 
 			catch (IOException e)
 			{
@@ -31,8 +29,8 @@ public class LoginClientSocketReceiver extends Thread{
 		}
 	}
 
-	private void createLoginClientHandler(Server server2, Socket clientSocket) {
-		new LoginClientHandler(server2, clientSocket);
+	private void createLoginClientHandler(Socket clientSocket) {
+		new LoginClientHandler(clientSocket);
 		
 	}	
 
