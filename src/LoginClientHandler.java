@@ -66,6 +66,18 @@ public class LoginClientHandler extends Thread {
 				} catch(IOException e){
 					e.printStackTrace();
 				}	
+			else if(request[0].equals("checkout"))
+				try {
+					out.writeObject((String)server.checkOut());
+				} catch(IOException e){
+					e.printStackTrace();
+				}	
+			else if(request[0].equals("createuser"))
+				try {
+					out.writeObject((String)server.createUser(request[1],request[2]));
+				} catch(IOException e){
+					e.printStackTrace();
+				}
 			else
 				try{
 					System.out.println("Illegal request");

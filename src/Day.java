@@ -20,20 +20,6 @@ public class Day implements Serializable{
 		public String checkout 	= "";
 		
 		public Day(int x, int y) {
-			if(y==1)
-				setStartTime("08:00");
-			if(y==2)
-				setStartTime("09:00");
-			if(y==3)
-				setStartTime("09:15");
-			if(y==4)
-				setStartTime("12:00");
-			if(y==5)
-				setStartTime("12:34");
-			if(y==6)
-				setStartTime("12:45");
-			if(y==7)
-				setStartTime("17:45");
 			week = x;
 			day = y;
 		}

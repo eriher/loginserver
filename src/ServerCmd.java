@@ -9,10 +9,14 @@ public class ServerCmd {
 		
 	}
 	
-	public void createUser(String username, String password)
+	public String createUser(String username, String password)
 	{
 		test = new User(username, password);
 		fm.write(test);
+		if(fm.read(username).getLogin().getUsername().equals(username))
+			return new String("User "+username+" created!");
+		else
+			return null;
 	}
 	
 	public User checkLogin(String username, String password)
@@ -31,6 +35,9 @@ public class ServerCmd {
 		test.getCurrentDay().setCheckIn();
 		return test.getCurrentDay().getCheckIn();
 	}
-
-
+	public String checkOut()
+	{
+		test.getCurrentDay().setCheckOut();
+		return test.getCurrentDay().getCheckOut();
+	}
 }
