@@ -26,6 +26,11 @@ public class ServerCmd {
 		else 
 			return null;
 	}
+	public String checkIn()
+	{
+		test.getCurrentDay().setCheckIn();
+		return test.getCurrentDay().getCheckIn();
+	}
 
 
 }

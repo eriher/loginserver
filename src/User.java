@@ -48,4 +48,12 @@ public class User implements Cloneable, Serializable {
 		LinkedList<Day> currentweek = schema.get(x);
 		return currentweek;
 	}
+	public Day getCurrentDay()
+	{
+		DateFormat dayFormat = new SimpleDateFormat("u");
+		Date date = new Date();
+		int x = Integer.parseInt(dayFormat.format(date));
+		Day currentday = getCurrentWeek().get(x);
+		return currentday;
+	}
 }

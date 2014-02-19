@@ -57,12 +57,15 @@ public class LoginClientHandler extends Thread {
 			if(request[0].equals("login"))
 				try {
 					out.writeObject((User)server.checkLogin(request[1],request[2]));
-					Thread.currentThread().interrupt();
 				} catch(IOException e){
 					e.printStackTrace();
 				}
-			//if(request[0].equals("logout"))
-				
+			else if(request[0].equals("checkin"))
+				try {
+					out.writeObject((String)server.checkIn());
+				} catch(IOException e){
+					e.printStackTrace();
+				}	
 			else
 				try{
 					System.out.println("Illegal request");
