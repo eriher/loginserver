@@ -24,10 +24,10 @@ public class Day implements Serializable{
 			day = y;
 		}
 		
-		public void setStartTime(String starttid){
+		public void setStart(String starttid){
 			this.starttid = starttid;
 		}
-		public void setSlutTid(String sluttid){
+		public void setSlut(String sluttid){
 			this.sluttid = sluttid;
 		}
 		public void setCheckIn(){
@@ -45,6 +45,9 @@ public class Day implements Serializable{
 			return Integer.toString(week);
 		}
 		public String getStart(){
+			return starttid;
+		}
+		public String getSlut(){
 			return starttid;
 		}
 		public String getCheckIn()

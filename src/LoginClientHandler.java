@@ -34,12 +34,12 @@ public class LoginClientHandler extends Thread {
 	}
 
 	private void handleRequests() {
-		String[] request = null;
+		Object[] request = null;
 		while(true)
 		{
 			try
 			{
-				request = (String[])in.readObject();
+				request = (Object[])in.readObject();
 			}
 			catch(Exception e)
 			{
@@ -56,28 +56,36 @@ public class LoginClientHandler extends Thread {
 			}
 			if(request[0].equals("login"))
 				try {
-					out.writeObject((User)server.checkLogin(request[1],request[2]));
+					out.writeObject(server.checkLogin((String)request[1],(String)request[2]));
 				} catch(IOException e){
 					e.printStackTrace();
 				}
 			else if(request[0].equals("checkin"))
 				try {
-					out.writeObject((String)server.checkIn());
+					out.writeObject(server.checkIn());
 				} catch(IOException e){
 					e.printStackTrace();
 				}	
 			else if(request[0].equals("checkout"))
 				try {
-					out.writeObject((String)server.checkOut());
+					out.writeObject(server.checkOut());
 				} catch(IOException e){
 					e.printStackTrace();
 				}	
 			else if(request[0].equals("createuser"))
 				try {
-					out.writeObject((String)server.createUser(request[1],request[2]));
+					out.writeObject(server.createUser((String)request[1],(String)request[2],(String)request[3]));
 				} catch(IOException e){
 					e.printStackTrace();
 				}
+			else if(request[0].equals("modifyschedule"))
+			{
+				try {
+					out.writeObject(server.modifySchedule(request[1]));
+				} catch(IOException e){
+					e.printStackTrace();
+				}
+			}
 			else
 				try{
 					System.out.println("Illegal request");

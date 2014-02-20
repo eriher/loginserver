@@ -17,10 +17,10 @@ public class User implements Cloneable, Serializable {
 	public LinkedList<Day> week;
 	public HashMap<Integer,LinkedList<Day>> schema;
 	
-	public User(String un, String pw)
+	public User(String un, String pw, String access)
 	{
 		schema = new HashMap<Integer, LinkedList<Day>>();
-		login = new Login(un,pw);
+		login = new Login(un,pw,access);
 		for(int x=1;x<53;x++){
 			week = new LinkedList<Day>();
 			for(int y=1;y<8;y++){
@@ -55,5 +55,15 @@ public class User implements Cloneable, Serializable {
 		int x = Integer.parseInt(dayFormat.format(date));
 		Day currentday = getCurrentWeek().get(x);
 		return currentday;
+	}
+	public void modSched(HashMap<Integer, LinkedList<Day>> modsched)
+	{
+		for(int x=1;x<53;x++)
+		{
+			for(int y=0;y<7;y++){
+				schema.get(x).get(y).setStart(modsched.get(x).get(y).getStart());
+				schema.get(x).get(y).setSlut(modsched.get(x).get(y).getSlut());
+			}
+		}
 	}
 }

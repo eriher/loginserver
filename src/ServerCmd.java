@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.LinkedList;
+
 
 public class ServerCmd {
 	
@@ -9,9 +12,9 @@ public class ServerCmd {
 		
 	}
 	
-	public String createUser(String username, String password)
+	public String createUser(String username, String password, String access)
 	{
-		test = new User(username, password);
+		test = new User(username, password, access);
 		fm.write(test);
 		if(fm.read(username).getLogin().getUsername().equals(username))
 			return new String("User "+username+" created!");
@@ -39,5 +42,12 @@ public class ServerCmd {
 	{
 		test.getCurrentDay().setCheckOut();
 		return test.getCurrentDay().getCheckOut();
+	}
+	@SuppressWarnings("unchecked")
+	public String modifySchedule(Object modsched)
+	{
+		test.modSched((HashMap<Integer, LinkedList<Day>>)modsched);
+		fm.write(test);
+		return new String("Schedule Modified");
 	}
 }
